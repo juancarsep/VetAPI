@@ -2,6 +2,7 @@ package jics.clinica.veterinaria.project.veterinary.service;
 
 import jics.clinica.veterinaria.project.veterinary.dto.PetOwnerDTO;
 import jics.clinica.veterinaria.project.veterinary.model.Pet;
+import jics.clinica.veterinaria.project.veterinary.repository.IOwnerRepository;
 import jics.clinica.veterinaria.project.veterinary.repository.IPetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,15 @@ public class PetServiceImpl implements IPetService{
 
     @Autowired
     IPetRepository petRepo;
+    @Autowired
+    IOwnerRepository ownRepo;
+
+
+
     @Override
     public void createPet(Pet pet) {
+    //pet.setOwner(ownRepo.findById(pet.getOwner().getOwner_id()).orElse(null));
+
         petRepo.save(pet);
     }
 

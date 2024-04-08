@@ -1,11 +1,10 @@
 package jics.clinica.veterinaria.project.veterinary.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -18,6 +17,8 @@ public class Owner {
     private String name;
     private String lastname;
     private String mobileNumber;
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private List<Pet> pets;
 
     public Owner() {
     }
@@ -28,5 +29,17 @@ public class Owner {
         this.name = name;
         this.lastname = lastname;
         this.mobileNumber = mobileNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "owner_id=" + owner_id +
+                ", dni='" + dni + '\'' +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", mobileNumber='" + mobileNumber + '\'' +
+                ", pets=" + pets +
+                '}';
     }
 }
